@@ -191,8 +191,11 @@ for j in range(0,len(list)):
     for obj in root.iter('object'):
         for name in obj.iter('name'):
             name_str=name.text
-            if name_str not in classeslist:
+            if name_str in classeslist:
+                break
+            else:
                 node_remove.add(obj)
+                break
     for i in node_remove:
         root.remove(i)
     tree.write(path)
