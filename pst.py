@@ -81,7 +81,7 @@ for i in range(len(classeslist)):#all classes
             for line in file_object:
                 temp=line.split('\n')
                 line_splited=temp[0].split(' ')
-                if len(line_splited)==3 and (line_splited[2] =='1' or line_splited[2]=='0'):
+                if len(line_splited)==3 and (line_splited[2] =='1'):
                     num_set_test.add(line_splited[0])
         finally:
             file_object.close()
@@ -92,7 +92,7 @@ for i in range(len(classeslist)):#all classes
             for line in file_object:
                 temp=line.split('\n')
                 line_splited=temp[0].split(' ')
-                if len(line_splited)==3 and (line_splited[2] =='1' or line_splited[2]=='0'):
+                if len(line_splited)==3 and (line_splited[2] =='1'):
                     num_set_trainval.add(line_splited[0])
         finally:
             file_object.close()
@@ -102,7 +102,7 @@ for i in range(len(classeslist)):#all classes
             for line in file_object:
                 temp=line.split('\n')
                 line_splited=temp[0].split(' ')
-                if len(line_splited)==3 and (line_splited[2] =='1' or line_splited[2]=='0'):
+                if len(line_splited)==3 and (line_splited[2] =='1'):
                     num_set_train.add(line_splited[0])
         finally:
             file_object.close()
@@ -112,7 +112,7 @@ for i in range(len(classeslist)):#all classes
             for line in file_object:
                 temp=line.split('\n')
                 line_splited=temp[0].split(' ')
-                if len(line_splited)==3 and (line_splited[2] =='1' or line_splited[2]=='0'):
+                if len(line_splited)==3 and (line_splited[2] =='1'):
                     num_set_val.add(line_splited[0])
         finally:
             file_object.close()
