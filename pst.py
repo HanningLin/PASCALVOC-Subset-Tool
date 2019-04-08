@@ -10,6 +10,8 @@ parser.add_argument('--dataset_source', default=VOC_ROOT,
                     help='Dataset source directory path')
 parser.add_argument('--classes', default=None, type=str,
                     help='The name of classes you want to extract, parse with symbol \',\'; you can select from ')
+parser.add_argument('--year', default='2007', choices=['2007', '2012'],
+                    type=str, help='2007 or 2012')
 args=parser.parse_args()
 
 #Classes Pretreatment
@@ -28,7 +30,10 @@ for i in range(classList_num):
     ListRemovedClasses.remove(classeslist[i])
 
 #create path
-VOC_2007=osp.join(args.dataset_source,'VOC2007')
+if args.year == '2007':
+    VOC_2007=osp.join(args.dataset_source,'VOC2007')
+elif args.year == '2012':
+    VOC_2007=osp.join(args.dataset_source,'VOC2012')##can be improved to autodetect
 VOC_Annotation=osp.join(VOC_2007,'Annotations')
 VOC_ImageSets=osp.join(VOC_2007,'ImageSets')
 VOC_ImageSets_Layout=osp.join(VOC_ImageSets,'Layout')
