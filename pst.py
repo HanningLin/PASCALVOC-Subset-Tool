@@ -174,19 +174,18 @@ for i in range(len(DirTuple)):
                 if file_name_list[0] not in num_tuple_trainval:
                     os.remove(path)
 #edit xml
-##2.remained xml remove other classes
+# ##2.remained xml remove other classes
 list = os.listdir(VOC_Annotation)
 for j in range(0,len(list)):
     path = osp.join(VOC_Annotation,list[j])
     tree = ET.parse(path)
     root = tree.getroot()
+    node_remove=set()
     for obj in root.iter('object'):
         for name in obj.iter('name'):
             name_str=name.text
-            print(name_str)
             if name_str not in classeslist:
-                print("!!!REMOVE!!!")
-                root.remove(obj)
-                break
+                node_remove.add(obj)
+    for i in node_remove:
+        root.remove(i)
     tree.write(path)
-
