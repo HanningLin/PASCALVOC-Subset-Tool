@@ -1,16 +1,13 @@
 import argparse
 import os.path as osp
 from config import *
-
+import xml.etree.ElementTree as ET
 
 VOC_ROOT = osp.join(HOME, "data/VOCdevkit/")
-VOC_DST = osp.join(HOME, "dst/VOCdevkit/")
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_source', default=VOC_ROOT,
                     help='Dataset source directory path')
-parser.add_argument('--dataset_dst', default=VOC_DST,
-                    help='Subdataset destination directory path')
 parser.add_argument('--classes', default=None, type=str,
                     help='The name of classes you want to extract, parse with symbol \',\'; you can select from ')
 args=parser.parse_args()
@@ -171,12 +168,25 @@ for i in range(len(DirTuple)):
         if os.path.isfile(path):
             file_name_list=list[j].split('.')
             if len(num_set_test) is not 0:
-                print("TEST!")
                 if file_name_list[0] not in num_tuple_test:
                     os.remove(path)
             if len(num_set_trainval) is not 0:
                 if file_name_list[0] not in num_tuple_trainval:
                     os.remove(path)
 #edit xml
-##1.remove .xml
 ##2.remained xml remove other classes
+list = os.listdir(VOC_Annotation)
+for j in range(0,len(list)):
+    path = osp.join(VOC_Annotation,list[j])
+    tree = ET.parse(path)
+    root = tree.getroot()
+    for obj in root.iter('object'):
+        for name in obj.iter('name'):
+            name_str=name.text
+            print(name_str)
+            if name_str not in classeslist:
+                print("!!!REMOVE!!!")
+                root.remove(obj)
+                break
+    tree.write(path)
+
