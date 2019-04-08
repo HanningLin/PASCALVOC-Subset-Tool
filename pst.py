@@ -173,11 +173,11 @@ for i in range(len(DirTuple)):
         if os.path.isfile(path):
             file_name_list=list[j].split('.')
             if len(num_set_test) is not 0:
-                if file_name_list[0] not in num_tuple_test and file_name_list[0] not in num_tuple_trainval:
+                if file_name_list[0] not in num_set_test and file_name_list[0] not in num_set_trainval:
                     if os.path.isfile(path):
                         os.remove(path)
             if len(num_set_trainval) is not 0:
-                if file_name_list[0] not in num_tuple_trainval and file_name_list[0] not in num_tuple_test:
+                if file_name_list[0] not in num_set_trainval and file_name_list[0] not in num_set_test:
                     if os.path.isfile(path):
                         os.remove(path)
 #edit xml
