@@ -10,6 +10,13 @@ COLORS = ((255, 0, 0, 128), (0, 255, 0, 128), (0, 0, 255, 128),
 
 MEANS = (104, 117, 123)
 
+VOC_CLASSES = (  # always index 0
+    'aeroplane', 'bicycle', 'bird', 'boat',
+    'bottle', 'bus', 'car', 'cat', 'chair',
+    'cow', 'diningtable', 'dog', 'horse',
+    'motorbike', 'person', 'pottedplant',
+    'sheep', 'sofa', 'train', 'tvmonitor')
+    
 # SSD300 CONFIGS
 voc = {
     'num_classes': 21,
@@ -26,6 +33,8 @@ voc = {
     'name': 'VOC',
 }
 
+
+    
 coco = {
     'num_classes': 201,
     'lr_steps': (280000, 360000, 400000),
