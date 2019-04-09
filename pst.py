@@ -190,8 +190,10 @@ for j in range(0,len(list)):
     node_remove=set()
     for obj in root.iter('object'):
         for name in obj.iter('name'):
+            difficult=obj.find('difficult')
+            # print("[TEST]difficult:{}".format(difficult.text))
             name_str=name.text
-            if name_str in classeslist:
+            if name_str in classeslist and difficult.text == '0':
                 break
             else:
                 node_remove.add(obj)
@@ -199,3 +201,14 @@ for j in range(0,len(list)):
     for i in node_remove:
         root.remove(i)
     tree.write(path)
+    #check if there is object left, if not, delete this xml and remove it from set then fix the txt file.
+    # tree = ET.parse(path)
+    # root = tree.getroot()
+    if root.find('object')==None:
+        # name=obj.find('name')
+        print("[TEST]FOUND no OBJ:{}".format(path))
+        os.remove(path)
+    # else:
+        # print("!!!!!!!")
+    
+    
